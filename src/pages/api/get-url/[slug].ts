@@ -24,6 +24,11 @@ export default async function getUrl(req: NextApiRequest, res: NextApiResponse) 
 
   if (!data) {
     res.statusCode = 404;
+
+    res.setHeader("Content-type", "application/json");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Cache-Control", "s-maxage=9999999, stale-while-revalidate");
+
     res.send({ message: "Url not found" });
     return;
   }
